@@ -1,0 +1,14 @@
+name: Test
+version: '1.0-SNAPSHOT'
+main: net.daylight.test.Test
+api-version: '1.21'
+
+commands:
+  evilTotem:
+    description: Gives totem
+    usage: /eviltotem
+    permission: glitch.evilTotem
+
+permissions:
+  glitch.evilTotems:
+    default: op
