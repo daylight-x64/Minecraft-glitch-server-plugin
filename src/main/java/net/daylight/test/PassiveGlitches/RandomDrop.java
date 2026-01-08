@@ -1,4 +1,4 @@
-package net.daylight.test.Glitches;
+package net.daylight.test.PassiveGlitches;
 
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;

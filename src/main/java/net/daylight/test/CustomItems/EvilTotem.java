@@ -1,5 +1,7 @@
 package net.daylight.test.CustomItems;
 
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
@@ -26,7 +28,9 @@ public class EvilTotem implements Listener {
     public ItemStack getEvilTotem() {
         final ItemStack totem = ItemStack.of(Material.TOTEM_OF_UNDYING);
 
+        totem.setData(DataComponentTypes.ITEM_MODEL, Key.key("daylight", "eviltotem"));
         ItemMeta meta = totem.getItemMeta();
+
         meta.getPersistentDataContainer().set(new NamespacedKey(plugin, EVIL_TOTEM_KEY), PersistentDataType.BOOLEAN, true);
         meta.displayName(Component.text("Evil Totem", NamedTextColor.DARK_RED));
         totem.setItemMeta(meta);

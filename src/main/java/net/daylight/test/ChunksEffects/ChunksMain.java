@@ -1,9 +1,7 @@
 package net.daylight.test.ChunksEffects;
 
-import net.daylight.test.Glitches.GhostBlocks;
 import org.bukkit.Chunk;
 import org.bukkit.NamespacedKey;
-import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

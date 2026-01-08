@@ -1,8 +1,10 @@
 net\daylight\test\ChunksEffects\ChunksMain.class
-net\daylight\test\Glitches\GhostBlocks.class
 net\daylight\test\Commands\GiveEvilTotem.class
+net\daylight\test\PassiveGlitches\RandomDrop.class
+net\daylight\test\Abilities\RandomTp.class
 net\daylight\test\ChunksEffects\ChunkGlitches.class
-net\daylight\test\Test.class
 net\daylight\test\CustomItems\EvilTotem.class
 net\daylight\test\ChunksEffects\ChunksPlayerHandler.class
-net\daylight\test\Glitches\RandomDrop.class
+net\daylight\test\Main.class
+net\daylight\test\PassiveGlitches\GhostBlocks.class
+net\daylight\test\Commands\RandomTpItem.class

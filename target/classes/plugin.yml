@@ -1,6 +1,6 @@
-name: Test
+name: GlitchServerPlugin
 version: '1.0-SNAPSHOT'
-main: net.daylight.test.Test
+main: net.daylight.test.Main
 api-version: '1.21'
 
 commands:
@@ -8,6 +8,10 @@ commands:
     description: Gives totem
     usage: /eviltotem
     permission: glitch.evilTotem
+  rtpItem:
+    description: Gives rtpItem
+    usage: /rtpItem
+    permission: glitch.rtpItem
 
 permissions:
   glitch.evilTotems:

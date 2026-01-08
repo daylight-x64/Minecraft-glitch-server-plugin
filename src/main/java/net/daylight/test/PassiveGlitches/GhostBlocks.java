@@ -1,9 +1,8 @@
-package net.daylight.test.Glitches;
+package net.daylight.test.PassiveGlitches;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
