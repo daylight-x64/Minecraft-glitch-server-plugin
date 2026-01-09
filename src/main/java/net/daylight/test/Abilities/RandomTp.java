@@ -70,10 +70,18 @@ public class RandomTp implements Listener {
 
     public boolean findHighestPointAndCheckIfSafe(Location loc) {
         for (int i = -3; i < 3; i++) {
-            if(!(loc.add(0,i,0).getBlock().isSolid())) continue;
-            if(!(locationIsSafe(loc.add(0,i+1,0)))) continue;
-            if(!(locationIsSafe(loc.add(0,i+2,0)))) continue;
+            Location base = loc.clone().add(0, i, 0);
+
+            if (!base.getBlock().isSolid()) continue;
+
+            Location head = loc.clone().add(0, i + 1, 0);
+            Location aboveHead = loc.clone().add(0, i + 2, 0);
+
+            if (!locationIsSafe(head)) continue;
+            if (!locationIsSafe(aboveHead)) continue;
+
             return true;
+
         }
         return false;
     }
