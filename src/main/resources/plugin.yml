@@ -12,6 +12,10 @@ commands:
     description: Gives rtpItem
     usage: /rtpItem
     permission: glitch.rtpItem
+  glitchFragment:
+    description: Gives glitchFragment
+    usage: /glitchFragment
+    permission: glitch.glitchFragment
 
 permissions:
   glitch.evilTotems:

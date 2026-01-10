@@ -1,4 +1,4 @@
-package net.daylight.test.CustomItems;
+package net.daylight.test.CustomItems.EvilTotem;
 
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import net.kyori.adventure.key.Key;

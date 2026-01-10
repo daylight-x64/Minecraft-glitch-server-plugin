@@ -1,27 +1,29 @@
-package net.daylight.test.Abilities;
+package net.daylight.test.CustomItems.RtpStick;
 
-import net.daylight.test.Commands.RandomTpItem;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomTp implements Listener {
-    RandomTpItem rtpItem;
     Plugin plugin;
 
 
 
     public RandomTp(Plugin plugin) {
         this.plugin = plugin;
-        rtpItem = new RandomTpItem(plugin);
     }
 
     @EventHandler
@@ -32,14 +34,22 @@ public class RandomTp implements Listener {
             return;
         }
         //Check if right item
-        Player player =(Player) e.getPlayer();
+        Player player =e.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
-        if(!(rtpItem.isRtpItem(item))) return;
+        if(!(isRtpItem(item))) return;
+
+        if(player.hasCooldown(item.getType())) {
+            player.sendMessage("§cYour RTP stick is recharging...");
+            return;
+        }
+
+
+        player.setCooldown(item.getType(), 20 * 30); // 30 seconds
 
         Location orgin = player.getLocation();
         Location newLoc = (randomNearby(orgin, 8));
         if(newLoc == null) {
-            player.sendMessage("Couldnt find valid location");
+            player.sendMessage("Couldn't find valid location");
             return;
         }
         player.teleport(newLoc);
@@ -54,9 +64,10 @@ public class RandomTp implements Listener {
             double x = Math.cos(angle) * distance;
             double z = Math.sin(angle) * distance;
             Location newLoc = origin.clone().add(x, 0, z);
-            if(findHighestPointAndCheckIfSafe(newLoc)) {
-                return origin.clone().add(x, 0, z);
-            }
+            Location safeY = findHighestPointAndCheckIfSafe(newLoc);
+            if(safeY == null) continue;
+            return safeY;
+
         }
         return null;
     }
@@ -68,22 +79,45 @@ public class RandomTp implements Listener {
     }
 
 
-    public boolean findHighestPointAndCheckIfSafe(Location loc) {
+    public Location findHighestPointAndCheckIfSafe(Location loc) {
         for (int i = -3; i < 3; i++) {
-            Location base = loc.clone().add(0, i, 0);
+            Location base = loc.clone().add(0, i-1, 0);
 
             if (!base.getBlock().isSolid()) continue;
 
+            Location feet = loc.clone().add(0, i, 0);
             Location head = loc.clone().add(0, i + 1, 0);
-            Location aboveHead = loc.clone().add(0, i + 2, 0);
 
+            if (!locationIsSafe(feet)) continue;
             if (!locationIsSafe(head)) continue;
-            if (!locationIsSafe(aboveHead)) continue;
 
-            return true;
+            return loc.clone().add(0, i, 0);
 
         }
-        return false;
+        return null;
+    }
+
+    private static final String RTPITEM = "rtpitem";
+
+    public ItemStack getRtpItem() {
+        final ItemStack stick = ItemStack.of(Material.STICK);
+
+        //stick.setData(DataComponentTypes.ITEM_MODEL, Key.key("daylight", RTPITEM));
+        ItemMeta meta = stick.getItemMeta();
+
+        meta.getPersistentDataContainer().set(new NamespacedKey(plugin, RTPITEM), PersistentDataType.BOOLEAN, true);
+        meta.displayName(Component.text("Rtp item", NamedTextColor.DARK_RED));
+        stick.setItemMeta(meta);
+
+        return stick;
+    }
+
+    public boolean isRtpItem(ItemStack item) {
+        if (item == null || item.getType() != Material.STICK) return false;
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return false;
+
+        return meta.getPersistentDataContainer().has(new NamespacedKey(plugin, RTPITEM), PersistentDataType.BOOLEAN);
     }
 
 }

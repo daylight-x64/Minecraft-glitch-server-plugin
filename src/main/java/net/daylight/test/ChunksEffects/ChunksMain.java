@@ -41,14 +41,12 @@ public class ChunksMain implements Listener {
     }
 
     public void playerInSpecialChunk(Player player) {
-        player.sendMessage("Your in a special chunk");
-        player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 20 * 10, 4));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 20 * 10, 1));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.HERO_OF_THE_VILLAGE, 20 * 10, 1));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, PotionEffect.INFINITE_DURATION, 4));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, PotionEffect.INFINITE_DURATION, 1));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.HERO_OF_THE_VILLAGE, PotionEffect.INFINITE_DURATION, 1));
 
     }
     public void playerNotInSpecialChunk(Player player) {
-        player.sendMessage("Your not in a special chunk");
         player.removePotionEffect(PotionEffectType.WEAKNESS);
         player.removePotionEffect(PotionEffectType.HUNGER);
         player.removePotionEffect(PotionEffectType.HERO_OF_THE_VILLAGE);

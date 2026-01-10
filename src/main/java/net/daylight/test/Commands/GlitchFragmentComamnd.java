@@ -1,19 +1,21 @@
 package net.daylight.test.Commands;
 
-import net.daylight.test.CustomItems.EvilTotem.EvilTotem;
+import net.daylight.test.CustomItems.GlitchFragments.GlitchFragment;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 
-public class GiveEvilTotem implements CommandExecutor {
+public class GlitchFragmentComamnd implements CommandExecutor {
+    GlitchFragment fragment;
+    Plugin plugin;
 
-    EvilTotem evilTotem;
 
-    public GiveEvilTotem(EvilTotem evilTotem) {
-        this.evilTotem = evilTotem;
+    public GlitchFragmentComamnd(Plugin plugin) {
+        this.plugin = plugin;
+        fragment = new GlitchFragment(plugin);
     }
-
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -31,10 +33,8 @@ public class GiveEvilTotem implements CommandExecutor {
         }
 
         // Give item
-        player.give(evilTotem.getEvilTotem());
+        player.give(fragment.getGlitchFragment(1));
 
-        player.sendMessage("§cYou feel something watching you...");
         return true;
     }
-
 }
