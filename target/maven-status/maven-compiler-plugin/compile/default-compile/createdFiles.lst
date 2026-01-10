@@ -1,0 +1,16 @@
+net\daylight\test\ChunksEffects\ChunksMain.class
+net\daylight\test\CustomItems\GlitchFragments\GlitchFragment.class
+net\daylight\test\CustomItems\EvilTotem\EvilTotem.class
+net\daylight\test\Commands\GiveEvilTotem.class
+net\daylight\test\ChunksEffects\ChunkGlitches.class
+net\daylight\test\CustomItems\RtpStick\RandomTp.class
+net\daylight\test\CustomItems\GlitchCore\GlitchCoreMain.class
+net\daylight\test\Main.class
+net\daylight\test\Commands\RandomTpItem.class
+net\daylight\test\Commands\GlitchFragmentComamnd.class
+net\daylight\test\CustomItems\GlitchFragments\GlitchFragmentListener.class
+net\daylight\test\CustomItems\GlitchCore\Recipe.class
+net\daylight\test\PassiveGlitches\RandomDrop.class
+net\daylight\test\CustomItems\RtpStick\RtpStickRecipe.class
+net\daylight\test\ChunksEffects\ChunksPlayerHandler.class
+net\daylight\test\PassiveGlitches\GhostBlocks.class
